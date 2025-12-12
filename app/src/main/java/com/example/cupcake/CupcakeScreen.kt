@@ -40,6 +40,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.res.dimensionResource
 import com.example.cupcake.ui.StartOrderScreen
 import com.example.cupcake.data.DataSource
+import androidx.compose.ui.platform.LocalContext
+import com.example.cupcake.ui.SelectOptionScreen
 /**
  * Composable that displays the topBar and displays back button if back navigation is possible.
  */
@@ -103,6 +105,15 @@ fun CupcakeApp(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))
+                )
+
+            }
+            composable(route = CupcakeScreen.Flavor.name) {
+                val context = LocalContext.current
+                SelectOptionScreen(
+                    subtotal = uiState.price,
+                    options = DataSource.flavors.map { id -> context.resources.getString(id) }
+
                 )
 
             }
