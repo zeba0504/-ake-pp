@@ -42,6 +42,8 @@ import com.example.cupcake.ui.StartOrderScreen
 import com.example.cupcake.data.DataSource
 import androidx.compose.ui.platform.LocalContext
 import com.example.cupcake.ui.SelectOptionScreen
+import androidx.compose.foundation.layout.fillMaxHeight
+import com.example.cupcake.data.DataSource.flavors
 /**
  * Composable that displays the topBar and displays back button if back navigation is possible.
  */
@@ -112,8 +114,19 @@ fun CupcakeApp(
                 val context = LocalContext.current
                 SelectOptionScreen(
                     subtotal = uiState.price,
-                    options = DataSource.flavors.map { id -> context.resources.getString(id) }
+                    options = DataSource.flavors.map { id -> context.resources.getString(id) },
+                    onSelectionChanged = { viewModel.setFlavor(it) },
+                    modifier = Modifier.fillMaxHeight()
 
+                )
+
+            }
+            composable(route = CupcakeScreen.Pickup.name) {
+                SelectOptionScreen(
+                    subtotal = uiState.price,
+                    options = uiState.pickupOptions,
+                    onSelectionChanged = { viewModel.setDate(it) },
+                    modifier = Modifier.fillMaxHeight()
                 )
 
             }
