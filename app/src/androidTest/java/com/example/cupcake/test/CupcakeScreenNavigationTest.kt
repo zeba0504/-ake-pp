@@ -48,6 +48,35 @@ class CupcakeScreenNavigationTest {
             .performClick()
         navController.assertCurrentRouteName(CupcakeScreen.Flavor.name)
     }
+    private fun navigateToFlavorScreen() {
+        composeTestRule.onNodeWithStringId(R.string.one_cupcake)
+            .performClick()
+        composeTestRule.onNodeWithStringId(R.string.chocolate)
+            .performClick()
+    }
+    private fun getFormattedDate(): String {
+        val calendar = Calendar.getInstance()
+        calendar.add(java.util.Calendar.DATE, 1)
+        val formatter = SimpleDateFormat("E MMM d", Locale.getDefault())
+        return formatter.format(calendar.time)
+    }
+
+    private fun navigateToPickupScreen() {
+        navigateToFlavorScreen()
+        composeTestRule.onNodeWithStringId(R.string.next)
+            .performClick()
+    }
+
+    private fun navigateToSummaryScreen() {
+        navigateToPickupScreen()
+        composeTestRule.onNodeWithText(getFormattedDate())
+            .performClick()
+        composeTestRule.onNodeWithStringId(R.string.next)
+            .performClick()
+    }
+
+
+
 
 
 
