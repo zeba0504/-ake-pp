@@ -8,6 +8,9 @@ import com.example.cupcake.CupcakeApp
 import androidx.compose.ui.platform.LocalContext
 import org.junit.Before
 import androidx.navigation.compose.ComposeNavigator
+import org.junit.Test
+import org.junit.Assert.assertEquals
+import com.example.cupcake.CupcakeScreen
 
 class CupcakeScreenNavigationTest {
     @get:Rule
@@ -23,4 +26,11 @@ class CupcakeScreenNavigationTest {
             CupcakeApp(navController = navController)
         }
     }
+    @Test
+    fun cupcakeNavHost_verifyStartDestination() {
+        assertEquals(CupcakeScreen.Start.name, navController.currentBackStackEntry?.destination?.route)
+    }
+
+
+
 }
