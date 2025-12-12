@@ -44,6 +44,7 @@ import androidx.compose.ui.platform.LocalContext
 import com.example.cupcake.ui.SelectOptionScreen
 import androidx.compose.foundation.layout.fillMaxHeight
 import com.example.cupcake.data.DataSource.flavors
+import com.example.cupcake.ui.OrderSummaryScreen
 /**
  * Composable that displays the topBar and displays back button if back navigation is possible.
  */
@@ -129,6 +130,12 @@ fun CupcakeApp(
                     modifier = Modifier.fillMaxHeight()
                 )
 
+            }
+            composable(route = CupcakeScreen.Summary.name) {
+                OrderSummaryScreen(
+                    orderUiState = uiState,
+                    modifier = Modifier.fillMaxHeight()
+                )
             }
         }
 
