@@ -33,10 +33,19 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.cupcake.ui.OrderViewModel
-
+import androidx.navigation.compose.NavHost
+import androidx.compose.foundation.layout.padding
 /**
  * Composable that displays the topBar and displays back button if back navigation is possible.
  */
+
+enum class CupcakeScreen() {
+    Start,
+    Flavor,
+    Pickup,
+    Summary
+}
+
 @Composable
 fun CupcakeAppBar(
     canNavigateBack: Boolean,
@@ -77,6 +86,13 @@ fun CupcakeApp(
         }
     ) { innerPadding ->
         val uiState by viewModel.uiState.collectAsState()
+
+        NavHost(
+            navController = navController,
+            startDestination = CupcakeScreen.Start.name,
+            modifier = Modifier.padding(innerPadding)
+        ) {
+        }
 
     }
 }
