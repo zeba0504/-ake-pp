@@ -35,6 +35,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.cupcake.ui.OrderViewModel
 import androidx.navigation.compose.NavHost
 import androidx.compose.foundation.layout.padding
+import androidx.navigation.compose.composable
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.res.dimensionResource
+import com.example.cupcake.ui.StartOrderScreen
+import com.example.cupcake.data.DataSource
 /**
  * Composable that displays the topBar and displays back button if back navigation is possible.
  */
@@ -92,6 +97,15 @@ fun CupcakeApp(
             startDestination = CupcakeScreen.Start.name,
             modifier = Modifier.padding(innerPadding)
         ) {
+            composable(route = CupcakeScreen.Start.name) {
+                StartOrderScreen(
+                    quantityOptions = DataSource.quantityOptions,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(dimensionResource(R.dimen.padding_medium))
+                )
+
+            }
         }
 
     }
